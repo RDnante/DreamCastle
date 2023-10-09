@@ -8,23 +8,8 @@ CREATE TABLE nationalites(
     nom VARCHAR
 );
 
-CREATE TABLE diplomes(
-    idDiplome SERIAL PRIMARY KEY,
-    nom VARCHAR
-);
-
-CREATE TABLE filieres(
-    idFiliere SERIAL PRIMARY KEY,
-    nom VARCHAR
-);
-
 CREATE TABLE seriesBacc(
     idSerieBacc SERIAL PRIMARY KEY,
-    nom VARCHAR
-);
-
-CREATE TABLE adresses(
-    idAdresse SERIAL PRIMARY KEY,
     nom VARCHAR
 );
 
@@ -35,10 +20,10 @@ CREATE TABLE personnes(
     mail VARCHAR,
     ddn DATE,
     idSexe INT,
-    idAdresse INT,
+    idLieu INT,
     idNationalite INT,
     FOREIGN KEY (idSexe) REFERENCES sexes(idSexe),
-    FOREIGN KEY (idAdresse) REFERENCES adresses(idAdresse),
+    FOREIGN KEY (idLieu) REFERENCES lieu(idLieu),
     FOREIGN KEY (idNationalite) REFERENCES nationalites(idNationalite)
 );
 
@@ -50,7 +35,7 @@ CREATE TABLE personneParcours(
     idFiliere INT,
     experience INT,
     FOREIGN KEY (idPersonne) REFERENCES personnes(idPersonne),
-    FOREIGN KEY (idDiplome) REFERENCES diplomes(idDiplome),
+    FOREIGN KEY (idDiplome) REFERENCES diplome(idDiplome),
     FOREIGN KEY (idSerieBacc) REFERENCES seriesBacc(idSerieBacc),
-    FOREIGN KEY (idFiliere) REFERENCES filieres(idFiliere)
+    FOREIGN KEY (idFiliere) REFERENCES filiere(idFiliere)
 );
